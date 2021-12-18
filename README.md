@@ -4,7 +4,7 @@ A twine christmas story.
 
 # How to play
 
-Open [github pages](https://amplejoe.github.io/all-i-want-4-xmas/all-i-want-4-xmas.html)
+Open on [github](https://amplejoe.github.io/all-i-want-4-xmas/) or TODO:itch.
 
 # How to edit
 
