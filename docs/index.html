@@ -270,15 +270,7 @@ Andreas Leibetseder
 */
 
 &lt;&lt;set $player to {
-	&quot;backpack&quot;: [
-		{&quot;name&quot;: &quot;hairclip&quot;, &quot;value&quot;: 1, &quot;image&quot;: &quot;clip_new.png&quot;}, 
-		{&quot;name&quot;: &quot;socks&quot;, &quot;value&quot;: 1, &quot;image&quot;: &quot;socken.png&quot;},
-		{&quot;name&quot;: &quot;crowbar&quot;, &quot;value&quot;: 1, &quot;image&quot;: &quot;brechstange.png&quot;},
-		{&quot;name&quot;: &quot;fishingrod&quot;, &quot;value&quot;: 1, &quot;image&quot;: &quot;angel.png&quot;},
-		{&quot;name&quot;: &quot;rubberduck&quot;, &quot;value&quot;: -1, &quot;image&quot;: &quot;ente.png&quot;},
-		{&quot;name&quot;: &quot;cookie&quot;, &quot;value&quot;: -1, &quot;image&quot;: &quot;cookie_neu.png&quot;},
-		{&quot;name&quot;: &quot;radio&quot;, &quot;value&quot;: -1, &quot;image&quot;: &quot;radiobox.png&quot;},
-		{&quot;name&quot;: &quot;toycar&quot;, &quot;value&quot;: -1, &quot;image&quot;: &quot;toycar.png&quot;}]
+	&quot;backpack&quot;: []
 }&gt;&gt;
 &lt;&lt;set $presents to {
 	list: [
@@ -301,7 +293,7 @@ Andreas Leibetseder
 &lt;&lt;set $grinch to {
 	&quot;mood&quot;: 0
 }&gt;&gt;
-&lt;&lt;set $havering to true&gt;&gt;
+&lt;&lt;set $havering to false&gt;&gt;
 &lt;&lt;set $poisoneddeer to false&gt;&gt;
 
 /* screens */
@@ -702,7 +694,9 @@ Man! You are really on the North Pole! It&#39;s incredibly cold and you&#39;re g
 	  &lt;&lt;print &quot;ring&quot;&gt;&gt;
 	  &lt;/div&gt;
   &lt;&lt;/if&gt;&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="9" name="screen4" tags="" position="1200,1100" size="100,100">You find yourself in a huge storage warehouse. You take a few steps and realize your causeing quite a ruckus. You stop to consider you next move.
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="9" name="screen4" tags="" position="1200,1100" size="100,100">&lt;img src=&quot;https://amplejoe.github.io/all-i-want-4-xmas/assets/screens/lagerraum.png&quot;&gt;
+
+You find yourself in a huge storage warehouse. You take a few steps and realize your causeing quite a ruckus. You stop to consider you next move.
 
 
 &lt;&lt;set _searchItems to [&quot;socks&quot;]&gt;&gt;
@@ -775,18 +769,29 @@ You&#39;re back in the Dark Forest. What will you do?
 &lt;br&gt;
 &lt;h2 class=&#39;backpack&#39;&gt;&lt;span&gt;Backpack&lt;/span&gt;&lt;/h2&gt;
 &lt;br&gt;
-&lt;&lt;for _i to 0; _i &lt; $player.backpack.length; _i++&gt;&gt;
-	&lt;&lt;if _i is not 0&gt;&gt;
-		&lt;&lt;print &quot;❄&quot;&gt;&gt;
-	&lt;&lt;/if&gt;&gt;
-	&lt;&lt;print $player.backpack[_i].name&gt;&gt;
-&lt;&lt;/for&gt;&gt;
-&lt;&lt;if $havering&gt;&gt;
-	&lt;&lt;if $player.backpack.length &gt; 0&gt;&gt;
-		&lt;&lt;print &quot;❄&quot;&gt;&gt;
-	&lt;&lt;/if&gt;&gt;
-	&lt;&lt;print &quot;shiny old ring&quot;&gt;&gt;
-&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="11" name="screen17" tags="" position="543,1026" size="100,100">&lt;img src=&quot;https://amplejoe.github.io/all-i-want-4-xmas/assets/screens/huette.png&quot;&gt;
+&lt;div class=&quot;bwrapper&quot;&gt;
+  &lt;&lt;for _i to 0; _i &lt; $player.backpack.length; _i++&gt;&gt;
+	  &lt;&lt;if _i is not 0&gt;&gt;
+	  
+		&lt;span class=&quot;flake&quot;&gt;&lt;&lt;print &quot;❄&quot;&gt;&gt;&lt;/span&gt;
+	  &lt;&lt;/if&gt;&gt;
+
+	  &lt;div class=&#39;item&#39;&gt;
+	  &lt;img @src=&quot;&#39;https://amplejoe.github.io/all-i-want-4-xmas/assets/items/&#39; + $player.backpack[_i].image&quot; class=&quot;item&quot;&gt;
+	  &lt;&lt;print $player.backpack[_i].name&gt;&gt;
+	  &lt;/div&gt;
+
+  &lt;&lt;/for&gt;&gt;
+  &lt;&lt;if $havering&gt;&gt;
+	  &lt;&lt;if $player.backpack.length &gt; 0&gt;&gt;
+		  &lt;&lt;print &quot;❄&quot;&gt;&gt;
+	  &lt;&lt;/if&gt;&gt;
+	  &lt;div class=&#39;item&#39;&gt;
+	  &lt;img src=&quot;https://amplejoe.github.io/all-i-want-4-xmas/assets/items/ring.png&quot; class=&quot;item&quot;&gt;
+	  &lt;&lt;print &quot;ring&quot;&gt;&gt;
+	  &lt;/div&gt;
+  &lt;&lt;/if&gt;&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="11" name="screen17" tags="" position="543,1026" size="100,100">&lt;img src=&quot;https://amplejoe.github.io/all-i-want-4-xmas/assets/screens/huette.png&quot;&gt;
 
 You followed the footsteps and they led you to a hut in a small clearing. A faint ray of light shines through the windows, you hear mumbling and then loud laughter. What is hidden in it? Despite your curiosity, you are no longer sure whether it was a good idea to approach the hut. Would you like to turn back or take a look inside the hut?
 
@@ -1105,11 +1110,9 @@ You cautiosly hide behind a hay bale and observe a heavy door opening. From the 
 
 You thoroughly search the room and ...
 
-
-
 &lt;&lt;for _i to 0; _i &lt; $choice3.length; _i++&gt;&gt;
 	&lt;&lt;set $present to {
-	  &quot;item&quot;: $choice2[_i],
+	  &quot;item&quot;: $choice3[_i],
 	  &quot;open&quot;: false,
 	  &quot;text&quot;: &quot;Open&quot;,
 	  &quot;tmp&quot;: {
@@ -1185,13 +1188,66 @@ You thoroughly search the room and ...
 	  &lt;&lt;print &quot;ring&quot;&gt;&gt;
 	  &lt;/div&gt;
   &lt;&lt;/if&gt;&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="21" name="screen8" tags="" position="1490,1232" size="100,100">You can see gigantic conveyor belts full of presents and hear the sound of machines buzzing and beeping. Also, you smell candy!
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="21" name="screen8" tags="" position="1490,1232" size="100,100">&lt;div class=&quot;pwrapper&quot;&gt;
+&lt;&lt;for _p to 0; _p &lt; $choice4.length; _p++&gt;&gt;
+  &lt;img src=&quot;https://amplejoe.github.io/all-i-want-4-xmas/assets/items/open_present.png&quot; class=&quot;present&quot;&gt;
+&lt;&lt;/for&gt;&gt;
+&lt;/div&gt;
 
-get entagled by packageing material 
-get caught or move on to santa
+You can see gigantic conveyor belts full of presents and hear the sound of machines buzzing and beeping. You see presents!! Also, you spot a flight of stairs leading to a conveyor booth of some sort - could this be the way to santa?
 
-[[Climb up the stairs to the overseer&#39;s booth|resultsanta]]
-[[Get caught|choice6]]
+&lt;&lt;for _i to 0; _i &lt; $choice4.length; _i++&gt;&gt;
+	&lt;&lt;set $present to {
+	  &quot;item&quot;: $choice4[_i],
+	  &quot;open&quot;: false,
+	  &quot;text&quot;: &quot;Open&quot;,
+	  &quot;tmp&quot;: {
+		&quot;elementid&quot;: &quot;&quot;,
+		&quot;popup&quot;: &quot;&quot;,
+		&quot;popupid&quot;: &quot;&quot;,
+		&quot;togglebutton&quot;: &quot;&quot;
+	  }
+	}&gt;&gt;
+
+	&lt;div @id=&quot;$present.item.name&quot;&gt;
+	  &lt;&lt;set $present.popup to $present.item.name + &quot;_pic&quot;&gt;&gt;
+	  &lt;span @id=&quot;$present.popup&quot; &gt;&lt;/span&gt;
+
+	  &lt;&lt;capture $present&gt;&gt;
+		  &lt;&lt;button $present.text&gt;&gt;
+			&lt;&lt;set $present.open to not $present.open&gt;&gt;		    
+			&lt;&lt;if $present.open&gt;&gt; 
+				&lt;&lt;set $present.text to &quot;Close&quot;&gt;&gt;
+				&lt;&lt;set $present.popupid to &quot;#&quot; + $present.popup&gt;&gt;
+	
+				&lt;&lt;replace $present.popupid&gt;&gt;
+					$present.item.name
+						&lt;&lt;button &quot;Take&quot;&gt;&gt;
+							&lt;&lt;set $player.backpack.push($present.item)&gt;&gt;							
+							&lt;&lt;set $items.taken = $items.taken + 1&gt;&gt;
+							&lt;&lt;set $santa.mood = $santa.mood + $present.item.value&gt;&gt;
+							&lt;&lt;set $choice3.delete($present.item)&gt;&gt;
+							&lt;&lt;set $present.elementid to &quot;#&quot; + $present.item.name&gt;&gt;						
+							&lt;&lt;run $($present.elementid).html(&quot;&quot;)&gt;&gt;
+							&lt;&lt;script&gt;&gt;state.display(state.active.title, null, &quot;back&quot;)&lt;&lt;/script&gt;&gt;
+						&lt;&lt;/button&gt;&gt;
+				&lt;&lt;/replace&gt;&gt;	
+
+			&lt;&lt;else&gt;&gt;
+				&lt;&lt;set $present.text to &quot;Open&quot;&gt;&gt;
+				&lt;&lt;run $($present.popupid).html(&quot;&quot;)&gt;&gt;
+			&lt;&lt;/if&gt;&gt;
+			
+			&lt;&lt;set $present.togglebutton to &quot;#&quot; + $present.item.name + &quot; .link-internal&quot;&gt;&gt;
+			&lt;&lt;run $($present.togglebutton).last().html($present.text)&gt;&gt;
+		  &lt;&lt;/button&gt;&gt;
+		&lt;&lt;/capture&gt;&gt;
+	&lt;/div&gt;
+&lt;&lt;/for&gt;&gt;
+
+
+[[Climb up the stairs|resultsanta]]
+[[Go to warehouse|screen4]]
 
 
 &lt;br&gt;
@@ -1219,7 +1275,9 @@ get caught or move on to santa
 	  &lt;&lt;print &quot;ring&quot;&gt;&gt;
 	  &lt;/div&gt;
   &lt;&lt;/if&gt;&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="22" name="resultsanta" tags="" position="1415,1382" size="100,100">There he is! Jolly old Santa!!
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="22" name="resultsanta" tags="" position="1415,1382" size="100,100">&lt;img src=&quot;https://amplejoe.github.io/all-i-want-4-xmas/assets/screens/happy santa.png&quot;&gt;
+
+There he is! Jolly old Santa!!
 
 &lt;br&gt;&lt;br&gt;
 
@@ -1239,7 +1297,6 @@ You&#39;ve got the bad Santa ending.
 &lt;&lt;else&gt;&gt;
 
 	He is not really fazed by your presence and looks at you puzzled.
-	TODO: neutral story
 
 &lt;br&gt;&lt;br&gt;
 You&#39;ve got the neutral Santa ending.
@@ -1247,7 +1304,10 @@ You&#39;ve got the neutral Santa ending.
 &lt;&lt;/if&gt;&gt;
 
 
-</tw-passagedata><tw-passagedata pid="23" name="choice6" tags="" position="1249,1281" size="100,100">[[Face the consequences|resultsanta]]
+</tw-passagedata><tw-passagedata pid="23" name="choice6" tags="" position="1249,1281" size="100,100">Your noise is giving you away. You have been spotted by elves.
+
+
+[[Face the consequences|resultsanta]]
 [[Run!!|screen11]]
 
 &lt;br&gt;
@@ -1275,8 +1335,9 @@ You&#39;ve got the neutral Santa ending.
 	  &lt;&lt;print &quot;ring&quot;&gt;&gt;
 	  &lt;/div&gt;
   &lt;&lt;/if&gt;&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="24" name="screen11" tags="" position="1249,1431" size="100,100">You run away frantically and find yourself in the outside area.
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="24" name="screen11" tags="" position="1249,1431" size="100,100">&lt;img src=&quot;https://amplejoe.github.io/all-i-want-4-xmas/assets/screens/outside.png&quot;&gt;
 
+You run away frantically and find yourself in the outside area.
 
 [[Go to garage|screen3]]
 [[Go to Dark Wook forest|screen12]]
