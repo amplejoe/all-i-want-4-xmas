@@ -98,24 +98,26 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
 		<div id="init-lacking">Your browser lacks required capabilities. Please upgrade it or switch to another to continue.</div>
 		<div id="init-loading"><div>Loading&hellip;</div></div>
 	</div>
-	<tw-storydata name="all-i-want-4-xmas" startnode="1" creator="Twine" creator-version="2.3.15" ifid="483D53C8-EF33-4966-9BF0-43A8FA4D05D0" zoom="1" format="SugarCube" format-version="2.34.1" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">/*
-:: StoryStylesheet[stylesheet]
-@import url('https://fonts.googleapis.com/css2?family=Mountains+of+Christmas&display=swap');
- font-family: 'Mountains of Christmas', cursive;
-*/
+	<tw-storydata name="all-i-want-4-xmas" startnode="1" creator="Twine" creator-version="2.3.15" ifid="483D53C8-EF33-4966-9BF0-43A8FA4D05D0" zoom="1" format="SugarCube" format-version="2.34.1" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">@import url('https://fonts.googleapis.com/css2?family=Mountains+of+Christmas&display=swap');
 
 /* GLOBAL */
 
 body {
   background: [img[https://amplejoe.github.io/all-i-want-4-xmas/assets/screens/background.jpg]] fixed;
   background-size: cover;
-  min-height: 100%;
+  min-height: 80%;
   height: 100%;
 }
 
+#passages {
+  min-width: 60%;
+  min-height: 70%;	
+}
+
 .passage { 
-  font-size: 20px;
-  padding: 20px;
+  font-family: 'Mountains of Christmas', cursive;
+  font-size: 35px;
+  padding: 15px;
   background-color: black;
   border-radius: 15px;
   opacity: 0.8;
@@ -124,18 +126,16 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
- 
+
 }
 
 .passage img {
-    max-width:100%;
-	max-height:100%;
+    max-width: 100%;
+	max-height:60%;
   	margin-top: 20px;
   	margin-bottom: 20px;
 }
 
-.link-internal {
-}
 
 /* BUTTON */
 
