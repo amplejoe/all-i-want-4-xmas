@@ -127,14 +127,61 @@ body {
 .link-internal {
 }
 
+/* BUTTON */
 
-</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-passagedata pid="1" name="title" tags="" position="600,400" size="100,100">
+.link-internal {
+  	text-shadow: black 1px 0 5px;
+  	padding-left: 20px;
+  	padding-right: 20px;
+  	padding-top: 5px;
+  	padding-bottom: 5px;
+	text-decoration: none;
+  	color: white;
+  	background-color: #F8B229; 
+  	border-radius: 10px;
+}
+.link-internal:link, .link-internal:visited {
+
+  background-color: #f44336;
+  color: white;
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+.link-internal:hover, .link-internal:active {
+  text-decoration: none;
+  background-color: #fed98e;
+  color: black;
+}
+
+/* BUTTON END */
+
+</style><script role="script" id="twine-user-script" type="text/twine-javascript">Config.passages.nobr = true;</script><tw-passagedata pid="1" name="title" tags="" position="600,400" size="100,100">
 &lt;img src=&quot;https://amplejoe.github.io/all-i-want-4-xmas/assets/screens/dummy.png&quot;&gt;
 
 A christmas story about finding wh
 
+[[Start|screen1]]
 
-[[Start|screen1]]</tw-passagedata><tw-passagedata pid="2" name="screen1" tags="" position="900,400" size="100,100">&lt;img src=&quot;https://amplejoe.github.io/all-i-want-4-xmas/assets/screens/Kaminbild_fertig1.png&quot;&gt;
+/* global variables */
+
+&lt;&lt;set $player to {
+	&quot;backpack&quot;: []
+}&gt;&gt;
+&lt;&lt;set $presents to {
+	&quot;opened&quot;: 0
+}&gt;&gt;
+&lt;&lt;set $items to {
+	&quot;taken&quot;: 0
+}&gt;&gt;
+&lt;&lt;set $santa to {
+	&quot;mood&quot;: 0
+}&gt;&gt;
+&lt;&lt;set $grinch to {
+	&quot;mood&quot;: 0
+}&gt;&gt;
+</tw-passagedata><tw-passagedata pid="2" name="screen1" tags="" position="900,400" size="100,100">&lt;img src=&quot;https://amplejoe.github.io/all-i-want-4-xmas/assets/screens/Kaminbild_fertig1.png&quot;&gt;
 
 You are in your living room. As every year... not this time!
 
@@ -148,9 +195,104 @@ With all the strength you can muster you climb the roof of your house. Carefully
 
 [[Yes, open it!|open1]]
 
-[[No, put it back where it was.|choice2]]</tw-passagedata><tw-passagedata pid="5" name="open1" tags="" position="1050,950" size="100,100">&lt;img src=&quot;https://static.wixstatic.com/media/2cd43b_84f92c263dd047ad894160dd376cdd14~mv2.png/v1/fill/w_320,h_338,q_90/2cd43b_84f92c263dd047ad894160dd376cdd14~mv2.png&quot;&gt;
+[[No, put it back where it was.|choice2]]</tw-passagedata><tw-passagedata pid="5" name="open1" tags="" position="1050,950" size="100,100">&lt;img src=&quot;https://img.favpng.com/5/21/19/diwali-graphic-design-png-favpng-fYFaj3ZD14zjBRSFPn2KgAv3m.jpg&quot;&gt;
 
-Oh what have we here?</tw-passagedata><tw-passagedata pid="6" name="choice2" tags="" position="1200,950" size="100,100">You manage to climb the sleigh unseen. &#39;Time to take a trip to the north pole&#39;,  you think, &#39;Good thing I&#39;m wearing my winter coat!&#39;.
+&lt;br&gt;
+What have have we here?
+&lt;br&gt;
+&lt;br&gt;
+
+/* present1 */
+&lt;&lt;set $present1 to {
+  &quot;item&quot;: &quot;clip&quot;,
+  &quot;open&quot;: false,
+  &quot;text&quot;: &quot;Open&quot;
+}&gt;&gt;
+&lt;&lt;if not $player.backpack.includes($present1.item)&gt;&gt;
+    &lt;div @id=&quot;$present1.item&quot;&gt;
+      &lt;&lt;set _present1pic to $present1.item + &quot;_pic&quot;&gt;&gt;
+      &lt;span @id=&quot;_present1pic&quot; &gt;&lt;/span&gt;
+
+      &lt;&lt;set _itembutton to $present1.item + &quot;_butt&quot;&gt;&gt;
+      &lt;&lt;button $present1.text&gt;&gt;
+	    &lt;&lt;set $present1.open to not $present1.open&gt;&gt;		    
+	    &lt;&lt;if $present1.open&gt;&gt; 
+		    &lt;&lt;set $present1.text to &quot;Close&quot;&gt;&gt;
+		    &lt;&lt;set _present1tmp to &quot;#&quot; + _present1pic&gt;&gt;		
+		    &lt;&lt;set _html to $present1.item&gt;&gt;
+
+		    &lt;&lt;replace _present1tmp&gt;&gt;
+			    $present1.item		
+			    &lt;&lt;button &quot;Take&quot;&gt;&gt;
+				    &lt;&lt;set $player.backpack.push($present1.item)&gt;&gt;
+				    &lt;&lt;set _present1tmp to &quot;#&quot; + $present1[&#39;item&#39;]&gt;&gt;					
+				    &lt;&lt;run $(_present1tmp).html(&quot;&quot;)&gt;&gt;
+				    &lt;&lt;script&gt;&gt;state.display(state.active.title, null, &quot;back&quot;)&lt;&lt;/script&gt;&gt;
+			    &lt;&lt;/button&gt;&gt;
+		    &lt;&lt;/replace&gt;&gt;
+
+	    &lt;&lt;else&gt;&gt;
+		    &lt;&lt;set $present1.text to &quot;Open&quot;&gt;&gt;
+		    &lt;&lt;set _present1tmp to &quot;#&quot; + _present1pic&gt;&gt;
+		    &lt;&lt;run $(_present1tmp).html(&quot;&quot;)&gt;&gt;
+	    &lt;&lt;/if&gt;&gt;
+	    
+	    &lt;&lt;set _present1tmp to &quot;#&quot; + $present1.item + &quot; .link-internal&quot;&gt;&gt;
+	    &lt;&lt;run $(_present1tmp).last().html($present1.text)&gt;&gt;
+      &lt;&lt;/button&gt;&gt;
+
+    &lt;/div&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;br&gt;
+
+/* $present2 */
+&lt;&lt;set $present2 to {
+  &quot;item&quot;: &quot;item2&quot;,
+  &quot;open&quot;: false,
+  &quot;text&quot;: &quot;Open&quot;
+}&gt;&gt;
+&lt;&lt;if not $player.backpack.includes($present2.item)&gt;&gt;
+    &lt;div @id=&quot;$present2.item&quot;&gt;
+      &lt;&lt;set _present2pic to $present2.item + &quot;_pic&quot;&gt;&gt;
+      &lt;span @id=&quot;_present2pic&quot; &gt;&lt;/span&gt;
+      &lt;&lt;set _itembutton to $present2.item + &quot;_butt&quot;&gt;&gt;
+      &lt;&lt;button $present2.text&gt;&gt;
+	    &lt;&lt;set $present2.open to not $present2.open&gt;&gt;		    
+	    &lt;&lt;if $present2.open&gt;&gt; 
+		    &lt;&lt;set $present2.text to &quot;Close&quot;&gt;&gt;
+		    &lt;&lt;set _present2tmp to &quot;#&quot; + _present2pic&gt;&gt;		
+		    &lt;&lt;set _html to $present2.item&gt;&gt;
+
+		    &lt;&lt;replace _present2tmp&gt;&gt;
+			    $present2.item
+			    &lt;&lt;button &quot;Take&quot;&gt;&gt;
+				    &lt;&lt;set $player.backpack.push($present2.item)&gt;&gt;
+				    &lt;&lt;set _present2tmp to &quot;#&quot; + $present2[&#39;item&#39;]&gt;&gt;					
+				    &lt;&lt;run $(_present2tmp).html(&quot;&quot;)&gt;&gt;
+				    &lt;&lt;script&gt;&gt;state.display(state.active.title, null, &quot;back&quot;)&lt;&lt;/script&gt;&gt;
+			    &lt;&lt;/button&gt;&gt;
+		    &lt;&lt;/replace&gt;&gt;
+	    &lt;&lt;else&gt;&gt;
+		    &lt;&lt;set $present2.text to &quot;Open&quot;&gt;&gt;
+		    &lt;&lt;set _present2tmp to &quot;#&quot; + _present2pic&gt;&gt;
+		    &lt;&lt;run $(_present2tmp).html(&quot;&quot;)&gt;&gt;
+	    &lt;&lt;/if&gt;&gt;
+	    
+	    &lt;&lt;set _present2tmp to &quot;#&quot; + $present2.item + &quot; .link-internal&quot;&gt;&gt;
+	    &lt;&lt;run $(_present2tmp).last().html($present2.text)&gt;&gt;
+      &lt;&lt;/button&gt;&gt;
+
+    &lt;/div&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;br&gt;
+&lt;br&gt;
+----------------------------------------
+&lt;br&gt;
+Backpack: &lt;&lt;print $player.backpack&gt;&gt;
+
+</tw-passagedata><tw-passagedata pid="6" name="choice2" tags="" position="1200,950" size="100,100">You manage to climb the sleigh unseen. &#39;Time to take a trip to the north pole&#39;,  you think, &#39;Good thing I&#39;m wearing my winter coat!&#39;.
 
 As you make yourself comfortable for the big ride you notice three unbelievably pretty presents with crossed out name tags bearing the letters &quot;NAUGHTY&quot;. These must be return presents from naughty kids, you figure. 
 
