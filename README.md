@@ -24,5 +24,5 @@ For more information, please refer to [http://unlicense.org/](http://unlicense.o
 
 # Credits
 
-Daniela Stefanics
-Andreas Leibetseder
+- Daniela Stefanics
+- Andreas Leibetseder
